@@ -51,5 +51,12 @@ public class MainActivity extends AppCompatActivity {
                 dpData.show();
             }
         });
+
+        btnCapturarData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvData.setText(edtData.getText());
+            }
+        });
     }
 }
