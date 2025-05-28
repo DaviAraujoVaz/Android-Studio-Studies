@@ -10,20 +10,15 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
     TextView tvData;
     Button btnCapturarData;
     EditText edtData;
     DatePickerDialog dpData;
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
