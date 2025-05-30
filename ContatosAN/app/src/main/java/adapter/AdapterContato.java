@@ -23,6 +23,7 @@ public class AdapterContato extends RecyclerView.Adapter<AdapterContato.MyViewHo
         this.listaContatos = listaContatos;
     }
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
