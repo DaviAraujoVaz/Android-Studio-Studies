@@ -52,18 +52,20 @@ public class ContatoDAO implements IContatoDAO {
 
         return true;
     }
-
+    
     @Override
     public boolean atualizar(Contato contato) {
         ContentValues cv = new ContentValues();
         cv.put("nomeContato", contato.getNomeContato());
         cv.put("telContato", contato.getTelContato());
+
         try {
             String[] args = {String.valueOf(contato.getId())};
-            write.insert(DbHelper.TABELA_CONTATO, null, cv);
-            Log.i("InfoDB", "Sucesso ao atualizar o resgistro");
+            // CORREÇÃO: Usar UPDATE em vez de INSERT
+            write.update(DbHelper.TABELA_CONTATO, cv, "id=?", args);
+            Log.i("InfoDB", "Sucesso ao atualizar o registro");
         } catch (Exception e) {
-            Log.i("InfoDB", "Falha ao atualizar o registro");
+            Log.i("InfoDB", "Falha ao atualizar o registro: " + e.getMessage());
             return false;
         }
 

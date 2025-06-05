@@ -18,11 +18,15 @@ import model.Contato;
 public class AdapterContato extends RecyclerView.Adapter<AdapterContato.MyViewHolder> {
     private List<Contato> listaContatos;
     private Context context;
+    private OnItemClickListener onItemClickListener;
 
     public AdapterContato(List<Contato> listaContatos) {
         this.listaContatos = listaContatos;
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     @NonNull
     @Override
@@ -37,11 +41,29 @@ public class AdapterContato extends RecyclerView.Adapter<AdapterContato.MyViewHo
         holder.nomeContato.setText(contato.getNomeContato());
         holder.telefoneContato.setText(contato.getTelContato());
 
+        holder.itemView.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(contato, position);
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemLongClick(contato, position);
+            }
+            return true;
+        });
     }
 
     @Override
     public int getItemCount() {
         return listaContatos.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Contato contato, int position);
+
+        void onItemLongClick(Contato contato, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
